@@ -14,13 +14,6 @@
 
 # microservice-app
 
-![]() ![GitHub]() ![]() ![]() ![]()
-
-
-
-
-
-
 This repository is a microservices and spring cloud project.
 
 
