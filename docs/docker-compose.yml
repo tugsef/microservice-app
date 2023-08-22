@@ -1,0 +1,53 @@
+version: '3.9'
+
+services:
+  cassandra:
+    image: cassandra:4.0
+    ports:
+      - 9042:9042
+    volumes:
+      - ~/apps/cassandra:/var/lib/cassandra
+    environment:
+      - CASSANDRA_CLUSTER_NAME=cloudinfra
+      
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'springcloud'
+      # Yani root kullanmak zorunda değilsiniz ama isterseniz kullanabilirsiniz
+      MYSQL_USER: 'tugsef'
+      # istediğiniz şifreyi kullanabilirsiniz
+      MYSQL_PASSWORD: 'microservic-app'
+      # Kök erişimi için şifre
+      MYSQL_ROOT_PASSWORD: 'microservic-app'
+    ports:
+      # <Port açıkta> : <MySQL Port, konteyner içinde çalışıyor> 
+      - '3306:3306'
+    expose:
+      # Kapta 3306 numaralı bağlantı noktasını açar
+      - '3306'
+      # Cilt birimlerimizi adlandırır
+    volumes:
+      - my-db:/var/lib/mysql
+# Names our volume
+  elasticsearch:
+    image: elasticsearch:7.5.2
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - data01:/usr/share/elasticsearch/data
+    environment:
+      discovery.type: single-node
+volumes:
+  my-db:
+  data01:
+    driver: local   
+
+
+    
+      
+    
+  
+     

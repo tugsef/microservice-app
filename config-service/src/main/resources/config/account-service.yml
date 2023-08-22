@@ -1,0 +1,32 @@
+server:
+  port: 8500
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8061/eureka/
+      
+logging:
+  pattern: 
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%X{traceId:-},%X{spanId:-}] ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+
+springdoc:
+  packagesToScan: com.tugsef.services.accountservice
+
+spring:
+  output:
+    ansi:
+      enabled: always
+
+spcloud:
+  cassandra:
+    contact:
+      point: 127.0.0.1
+    port : 9042
+    keyspace:
+      name: springcloud
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
