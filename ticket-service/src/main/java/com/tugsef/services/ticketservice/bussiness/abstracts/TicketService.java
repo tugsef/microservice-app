@@ -3,15 +3,15 @@ package com.tugsef.services.ticketservice.bussiness.abstracts;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.tugsef.services.ticketservice.entities.es.TicketModel;
+import com.tugsef.services.ticketservice.bussiness.response.TicketResponse;
 
 public interface TicketService {
 
-    TicketModel save(TicketModel ticketModel);
+    TicketResponse save(TicketResponse ticketResponse);
 
-    TicketModel update(String id, TicketModel ticketModel);
+    TicketResponse update(String id, TicketResponse ticketResponse);
 
-    TicketModel getById(String ticketId);
+    TicketResponse getById(String ticketId);
 
-    Page<TicketModel> getPagination(Pageable pageable);
+    Page<TicketResponse> getPagination(Pageable pageable);
 }

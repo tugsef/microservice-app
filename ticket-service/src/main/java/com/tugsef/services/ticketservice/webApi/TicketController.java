@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tugsef.services.ticketservice.bussiness.abstracts.TicketService;
-import com.tugsef.services.ticketservice.entities.es.TicketModel;
+import com.tugsef.services.ticketservice.bussiness.response.TicketResponse;
 
 import lombok.AllArgsConstructor;
 
@@ -24,23 +24,23 @@ public class TicketController {
     private  TicketService ticketService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<TicketModel> getById(@PathVariable String id) {
+    public ResponseEntity<TicketResponse> getById(@PathVariable String id) {
         return ResponseEntity.ok(ticketService.getById(id));
     }
 
     @PostMapping
-    public ResponseEntity<TicketModel> createTicket(@RequestBody TicketModel ticketModel) {
-        return ResponseEntity.ok(ticketService.save(ticketModel));
+    public ResponseEntity<TicketResponse> createTicket(@RequestBody TicketResponse ticketResponse) {
+        return ResponseEntity.ok(ticketService.save(ticketResponse));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TicketModel> updateTicket(@PathVariable String id,
-                                                  @RequestBody TicketModel ticketModel) {
-        return ResponseEntity.ok(ticketService.update(id, ticketModel));
+    public ResponseEntity<TicketResponse> updateTicket(@PathVariable String id,
+                                                  @RequestBody TicketResponse ticketResponse) {
+        return ResponseEntity.ok(ticketService.update(id, ticketResponse));
     }
 
     @GetMapping
-    public ResponseEntity<Page<TicketModel>> getAll(Pageable pageable) {
+    public ResponseEntity<Page<TicketResponse>> getAll(Pageable pageable) {
         return ResponseEntity.ok(ticketService.getPagination(pageable));
     }
 }

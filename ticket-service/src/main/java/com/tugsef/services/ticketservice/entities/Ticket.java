@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.hibernate.annotations.GenericGenerator;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -27,7 +28,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Ticket extends BaseEntityModel {
 
-    
+    /**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id

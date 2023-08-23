@@ -14,9 +14,15 @@ springdoc:
   packagesToScan: com.tugsef.services.ticketservice
 
 spring:
-  output:
-    ansi:
-      enabled: always
+  datasource:
+    url: jdbc:mysql://localhost:3306/microserviceapp
+    username: root
+    password: microservice-app
+  jpa:
+    database: mysql
+    database-platform: "org.hibernate.dialect.MySQL8Dialect"
+    hibernate:
+      ddl-auto: create
 
 management:
   tracing:

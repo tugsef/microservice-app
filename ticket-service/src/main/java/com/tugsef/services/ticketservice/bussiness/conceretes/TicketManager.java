@@ -3,12 +3,11 @@ package com.tugsef.services.ticketservice.bussiness.conceretes;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.tugsef.services.ticketservice.bussiness.abstracts.TicketNotificationService;
 import com.tugsef.services.ticketservice.bussiness.abstracts.TicketService;
+import com.tugsef.services.ticketservice.bussiness.response.TicketResponse;
 import com.tugsef.services.ticketservice.dataAccess.TicketRepository;
 import com.tugsef.services.ticketservice.dataAccess.es.TicketElasticRepository;
 import com.tugsef.services.ticketservice.entities.PriorityType;
@@ -18,31 +17,30 @@ import com.tugsef.services.ticketservice.entities.es.TicketModel;
 
 import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
 @Service
+@AllArgsConstructor
 public class TicketManager implements TicketService {
 
-    private final TicketElasticRepository ticketElasticRepository;
-    private final TicketRepository ticketRepository;
-    private final TicketNotificationService ticketNotificationService;
-    private final AccountServiceClient accountServiceClient;
+    private  TicketElasticRepository ticketElasticRepository;
+    private  TicketRepository ticketRepository;
+  
 
     @Override
     @Transactional
-    public TicketModel save(TicketModel ticketModel) {
+    public TicketResponse save(TicketResponse ticketResponse) {
         // Ticket Entity
-        if (ticketModel.getDescription() == null)
+        Ticket ticket = new Ticket();
+        //TODO Account API dan dogrula
+        // ticket.setAssignee();
+
+        if (ticketResponse.getDescription() == null)
             throw new IllegalArgumentException("Description bos olamaz");
 
-        Ticket ticket = new Ticket();
-        ResponseEntity<AccountDto> accountDtoResponseEntity = accountServiceClient.get(ticketModel.getAssignee());
-
-        ticket.setDescription(ticketModel.getDescription());
-        ticket.setNotes(ticketModel.getNotes());
-        ticket.setTicketDate(ticketModel.getTicketDate());
-        ticket.setTicketStatus(TicketStatus.valueOf(ticketModel.getTicketStatus()));
-        ticket.setPriorityType(PriorityType.valueOf(ticketModel.getPriorityType()));
-        ticket.setAssignee(accountDtoResponseEntity.getBody().getId());
+        ticket.setDescription(ticketResponse.getDescription());
+        ticket.setNotes(ticketResponse.getNotes());
+        ticket.setTicketDate(ticketResponse.getTicketDate());
+        ticket.setTicketStatus(TicketStatus.valueOf(ticketResponse.getTicketStatus()));
+        ticket.setPriorityType(PriorityType.valueOf(ticketResponse.getPriorityType()));
 
         // mysql kaydet
         ticket = ticketRepository.save(ticket);
@@ -53,7 +51,6 @@ public class TicketManager implements TicketService {
                 .description(ticket.getDescription())
                 .notes(ticket.getNotes())
                 .id(ticket.getId())
-                .assignee(accountDtoResponseEntity.getBody().getNameSurname())
                 .priorityType(ticket.getPriorityType().getLabel())
                 .ticketStatus(ticket.getTicketStatus().getLabel())
                 .ticketDate(ticket.getTicketDate()).build();
@@ -62,25 +59,22 @@ public class TicketManager implements TicketService {
         ticketElasticRepository.save(model);
 
         // olusan nesneyi döndür
-        ticketModel.setId(ticket.getId());
-
-        // Kuyruga notification yaz
-        ticketNotificationService.sendToQueue(ticket);
-        return ticketModel;
+        ticketResponse.setId(ticket.getId());
+        return ticketResponse;
     }
 
     @Override
-    public TicketModel update(String id, TicketModel ticketDto) {
+    public TicketResponse update(String id, TicketResponse ticketResponse) {
         return null;
     }
 
     @Override
-    public TicketModel getById(String ticketId) {
+    public TicketResponse getById(String ticketId) {
         return null;
     }
 
     @Override
-    public Page<TicketModel> getPagination(Pageable pageable) {
+    public Page<TicketResponse> getPagination(Pageable pageable) {
         return null;
     }
 }
