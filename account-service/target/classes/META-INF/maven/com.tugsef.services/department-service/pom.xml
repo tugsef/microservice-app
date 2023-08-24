@@ -7,7 +7,7 @@
         <version>1.1-SNAPSHOT</version>
     </parent>
     <artifactId>department-service</artifactId>
-    <version>1.2-SNAPSHOT</version>
+
 
     <properties>
         <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
@@ -93,7 +93,11 @@
 				org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
-		
+		<dependency>
+            <groupId>com.tugsef.services</groupId>
+            <artifactId>service-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

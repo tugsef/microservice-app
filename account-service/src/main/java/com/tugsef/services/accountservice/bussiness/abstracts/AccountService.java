@@ -3,7 +3,11 @@ package com.tugsef.services.accountservice.bussiness.abstracts;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 
-import com.tugsef.services.accountservice.bussiness.responses.AccountResponse;
+import com.tugsef.services.servicecommon.client.contract.AccountResponse;
+
+
+
+
 
 public interface AccountService {
 

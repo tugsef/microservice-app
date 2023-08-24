@@ -25,7 +25,7 @@ import io.swagger.v3.oas.annotations.info.Info;
 @OpenAPIDefinition(info =
 	@Info(title = "Department API", version = "1.0", description = "Documentation Department API v1.0")
 )
-@ComponentScan(basePackages = "com.tugsef.services.ticketservice")
+@ComponentScan(basePackages = "com.tugsef.services")
 @RestControllerAdvice
 public class TicketServiceApplication {
 	public static void main(String[] args) {

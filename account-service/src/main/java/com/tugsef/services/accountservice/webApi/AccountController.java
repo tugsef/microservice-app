@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tugsef.services.accountservice.bussiness.abstracts.AccountService;
-import com.tugsef.services.accountservice.bussiness.responses.AccountResponse;
+import com.tugsef.services.servicecommon.client.contract.AccountResponse;
 
 import lombok.AllArgsConstructor;
 

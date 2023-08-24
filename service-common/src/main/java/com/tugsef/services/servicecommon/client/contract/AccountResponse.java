@@ -1,4 +1,4 @@
-package com.tugsef.services.accountservice.bussiness.responses;
+package com.tugsef.services.servicecommon.client.contract;
 
 import java.util.Date;
 
@@ -7,11 +7,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class AccountResponse {
-	
-	private String id ;
+
+    private String id ;
 
     private String username;
 
@@ -22,4 +22,9 @@ public class AccountResponse {
     private String email;
 
     private Date birthDate;
+
+    public String getNameSurname() {
+       return this.name + " " + this.surname;
+    }
 }
+
