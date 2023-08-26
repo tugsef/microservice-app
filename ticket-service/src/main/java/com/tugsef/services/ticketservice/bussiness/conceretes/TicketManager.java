@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.tugsef.services.servicecommon.client.AccountServiceClient;
 import com.tugsef.services.servicecommon.client.contract.AccountResponse;
+import com.tugsef.services.ticketservice.bussiness.abstracts.TicketNotificationService;
 import com.tugsef.services.ticketservice.bussiness.abstracts.TicketService;
 import com.tugsef.services.ticketservice.bussiness.response.TicketResponse;
 import com.tugsef.services.ticketservice.dataAccess.TicketRepository;
@@ -27,7 +28,8 @@ public class TicketManager implements TicketService {
     private  TicketElasticRepository ticketElasticRepository;
     private  TicketRepository ticketRepository;
     private  AccountServiceClient accountServiceClient;
-  
+    private  TicketNotificationService ticketNotificationService;
+   
 
     @Override
     @Transactional
@@ -65,6 +67,10 @@ public class TicketManager implements TicketService {
 
         // olusan nesneyi döndür
         ticketResponse.setId(ticket.getId());
+        
+     // Kuyruga notification yaz
+        ticketNotificationService.sendToQueue(ticket);
+       
         return ticketResponse;
     }
 

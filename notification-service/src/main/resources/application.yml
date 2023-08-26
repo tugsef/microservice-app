@@ -1,0 +1,28 @@
+spring:
+  config:
+    import: "optional:configserver:http://config-service:8088"
+    activate:
+      on-profile: docker
+    stream:
+      bindings:
+        input:
+          destination: msqueue
+---
+spring:
+  application:
+    name: notification-service
+  config:
+    import: "optional:configserver:http://localhost:8088"
+  stream:
+      bindings:
+        input:
+          destination: msqueue
+
+sr: 
+  rappit:
+    queue:
+      name: tug-sef-queue
+    exchange:
+      name: tug-sef-exchange
+    routing:
+      name: tug-sef-routing        
