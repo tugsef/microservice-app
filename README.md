@@ -18,6 +18,7 @@ This repository is a microservices and spring cloud project.
 
 
 # 💻 Tech Stack:
+
 <p align="center">
   <img alt="java" src="https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white"/>
   <img alt="markdown" src="https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white"/>
@@ -39,6 +40,12 @@ This repository is a microservices and spring cloud project.
   <img alt="css3" src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white"/>
   <img alt="html" src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white"/>
   <img alt="typescript" src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white"/>
-  </p>
+</p>
 
+  
+# :atom: Basic Scheme
+<p align="center">
+  <img align="center" src="https://github.com/HaydiKodlayalim/microservice-app/blob/master/docs/arch.png?raw=true"/>
+</p>
+ 
 
